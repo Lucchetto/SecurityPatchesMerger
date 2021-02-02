@@ -49,7 +49,8 @@ for repo in repos:
                 repo.git.branch('-D', repo_branch_name)
             repo.git.checkout('HEAD', b=repo_branch_name)
         repo.git.fetch(repo_url, tag_to_merge)
-        repo.git.merge("FETCH_HEAD", repo_branch_name)
+        commit_message = "Merge tag '" + tag_to_merge + "' of " + repo_url + " into " + repo_branch_name
+        repo.git.merge('-m ' + commit_message, "FETCH_HEAD", repo_branch_name)
         repo.git.push(repos_remote_to_merge, repo_branch_name)
     else:
         print("Repo doesn't exist on " + git_base_url)
