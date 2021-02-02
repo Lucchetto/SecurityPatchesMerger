@@ -34,6 +34,9 @@ for repo in repos:
     print("")
     print("Working on " + repo_path)
     repo_url = git_base_url + repo_path
+    # Repo with exception rules in the name
+    if repo_path == "build/make":
+       repo_url = git_base_url + "build"
     repo_remote_exists = remote_exists(repo_url)
     if repo_remote_exists:
         print("Repo exists on " + git_base_url)
